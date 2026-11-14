@@ -2,16 +2,10 @@
 require_once __DIR__ . '/includes/scripts/database.php';
 
 // step 1: connect to database
-// mysql_connect() -just in a differnt file
 $connection = getConnection();
 
-// step 2: run a query against our database
-$queryResult = mysqli_query($connection, 'SELECT * FROM issues;');
-
-// step 3: fetch all the results (not best practice, will discuss alternative shortly)
-// $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
-
-// var_dump($results);
+// step 2: 전체 잡지 목록을 모두 가져오기 (WHERE 조건 제거!)
+$queryResult = mysqli_query($connection, 'SELECT * FROM issues');
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +23,15 @@ $queryResult = mysqli_query($connection, 'SELECT * FROM issues;');
     <main>
         <h2>Issues</h2>
         <ul>
-
-            <?php while ($result = mysqli_fetch_array($queryResult)): ?>
+            <?php while ($issue = mysqli_fetch_array($queryResult)): ?>
             <li>
                 <article>
-                    <h3><?php echo $result['name']; ?></h3>
+                    <!-- 잡지 이름을 클릭하면 issue.php?id=번호 페이지로 이동합니다! -->
+                    <h3>
+                        <a href="issue.php?id=<?php echo $issue['id']; ?>">
+                            <?php echo $issue['name']; ?>
+                        </a>
+                    </h3>
                 </article>
             </li>
             <?php endwhile; ?>
