@@ -6,7 +6,7 @@ function getConnection()
 {
     $hostname = 'localhost';
     $username = 'root';
-    $password = 'root';
+    $password = '';
     $database = 'digital_magazine';
     $port = 3306;
 
