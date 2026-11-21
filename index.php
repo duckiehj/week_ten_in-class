@@ -49,9 +49,13 @@ $queryResult = mysqli_query($connection, $query);
         <main>
             <h2>Issues</h2>
             <form action="index.php" method="GET">
+                <div>
                 <label for="search">Search:</label>
                 <input type="text" id="search" name="search">
-
+                </div>
+                <div>
+                    <button type="submit">Go</button>
+                    </div>
             </form>
             <ul>
                 <!-- loop over each result from our query -->
